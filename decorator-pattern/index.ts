@@ -20,12 +20,15 @@ const beverage: Beverage = {
   },
 };
 
-function beverageWithDecorate(beverage: Beverage, args: Partial<Beverage>) {
+const beverageWithDecorate = (
+  beverage: Beverage,
+  args: Partial<Beverage>
+): Beverage => {
   return {
     ...beverage,
     ...args,
   };
-}
+};
 
 const topping = beverageWithDecorate(beverage, { topping: "Java Chip" });
 const drizzle = beverageWithDecorate(topping, { drizzle: "Caramel" });
