@@ -13,6 +13,7 @@ export class Engine {
 export class HyundaiEngine extends Engine {}
 export class TeslaEngine extends Engine {}
 export class BMWEngine extends Engine {}
+export class KiaEngine extends Engine {}
 
 export class EngineFactory {
   public static createEngine(brand: CarBrand) {
@@ -27,6 +28,8 @@ export class EngineFactory {
       case "Tesla":
         engine = new TeslaEngine();
         break;
+      case "Kia":
+        engine = new KiaEngine();
     }
 
     return engine;

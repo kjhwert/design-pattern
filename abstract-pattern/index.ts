@@ -3,6 +3,7 @@ import {
   Gearbox,
   GearboxFactory,
   HyundaiGearBox,
+  KiaGearBox,
   TeslaGearBox,
 } from "./Gearbox";
 import {
@@ -10,10 +11,19 @@ import {
   Engine,
   EngineFactory,
   HyundaiEngine,
+  KiaEngine,
   TeslaEngine,
 } from "./Engine";
+import {
+  BMWDoor,
+  Door,
+  DoorFactory,
+  HyundaiDoor,
+  KiaDoor,
+  TeslaDoor,
+} from "./Door";
 
-export type CarBrand = "Hyundai" | "Tesla" | "BMW";
+export type CarBrand = "Hyundai" | "Tesla" | "BMW" | "Kia";
 
 const hyundaiGearBox = GearboxFactory.createGearBox("Hyundai");
 const hyundaiEngine = EngineFactory.createEngine("Hyundai");
@@ -22,6 +32,10 @@ const hyundaiDoor = DoorFactory.createDoor("Hyundai");
 hyundaiGearBox.drive();
 hyundaiEngine.run();
 hyundaiDoor.open();
+
+const kiaGearBox = GearboxFactory.createGearBox("Kia");
+const kiaEngine = EngineFactory.createEngine("Kia");
+const kiaDoor = DoorFactory.createDoor("Kia");
 
 /*
     단점
@@ -45,6 +59,10 @@ class HyundaiFactory implements CarFactory {
   public createGearBox(): Gearbox {
     return new HyundaiGearBox();
   }
+
+  public createDoor(): Door {
+    return new HyundaiDoor();
+  }
 }
 
 class TeslaFactory implements CarFactory {
@@ -55,6 +73,10 @@ class TeslaFactory implements CarFactory {
   public createGearBox(): Gearbox {
     return new TeslaGearBox();
   }
+
+  public createDoor(): Door {
+    return new TeslaDoor();
+  }
 }
 
 class BMWFactory implements CarFactory {
@@ -64,6 +86,24 @@ class BMWFactory implements CarFactory {
 
   public createGearBox(): Gearbox {
     return new BMWGearBox();
+  }
+
+  public createDoor(): Door {
+    return new BMWDoor();
+  }
+}
+
+class KiaFactory implements CarFactory {
+  public createDoor(): Door {
+    return new KiaDoor();
+  }
+
+  public createGearBox(): Gearbox {
+    return new KiaGearBox();
+  }
+
+  public createEngine(): Engine {
+    return new KiaEngine();
   }
 }
 
@@ -79,6 +119,8 @@ function createCar(brand: CarBrand) {
     case "BMW":
       factory = new BMWFactory();
       break;
+    case "Kia":
+      factory = new KiaFactory();
   }
 
   const engine = factory.createEngine();
@@ -88,4 +130,5 @@ function createCar(brand: CarBrand) {
 
 /*
     door가 추가된다고 했을때, 이전 코드와 abstract pattern을 적용한 코드가 훨씬 효율적이라고 말할 수 있을까?.. 잘 모르겠는데
+    브랜드가 추가되면? abstract도 효율적이여보이진 않는다...
  */

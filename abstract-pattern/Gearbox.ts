@@ -21,6 +21,7 @@ export class Gearbox {
 export class HyundaiGearBox extends Gearbox {}
 export class TeslaGearBox extends Gearbox {}
 export class BMWGearBox extends Gearbox {}
+export class KiaGearBox extends Gearbox {}
 
 export class GearboxFactory {
   public static createGearBox(brand: CarBrand) {
@@ -34,6 +35,9 @@ export class GearboxFactory {
         break;
       case "Tesla":
         gearBox = new TeslaGearBox();
+        break;
+      case "Kia":
+        gearBox = new KiaGearBox();
         break;
     }
 
