@@ -12,7 +12,7 @@
 #### 주요 특징
 1. 객체들을 똑같이 다룬다. 다시말해 복합 객체와 잎 객체에 똑같은 메소드를 호출한다. 즉, 모든 객체의 인터페이스가 같아야한다는 말이 된다.
 2. 트리 구조를 이루고 있다. 뿌리는 최상위 복합 객체, 자식들은 모두 복합 객체나 잎으로 이루어져 있다.
-3. Decorator adds additional responsibilities to the wrapped object, while Composite just “sums up” its children’s results. 왜 이 말이 이해가 안되지... 왜 sum up 해?
+3. Decorator adds additional responsibilities to the wrapped object, while Composite just “sums up” its children’s results. 왜 이 말이 이해가 안되지... 왜 sum up 해? - decorator는 금액을 반환할 때 object의 price + 자신의 price를 return 시키므로 responsibility가 추가되지만, composite 패턴은 자기 자신의 금액만을 return 시킨다는 말!
 
 #### 장점
 1. 클라이언트를 단순화할 수 있다. 클라이언트가 객체를 사용할 때 복합 객체를 사용하는지, 잎 객체를 사용하는지 신경 쓸 필요가 없다.
