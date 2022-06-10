@@ -1,37 +1,30 @@
-export interface Beverage {
-  shot: number;
-  syrup: boolean;
-  topping?: Topping;
-  drizzle?: Drizzle;
-  whipping?: Whipping;
-  order(): Omit<Beverage, "order">;
-}
+import { Espresso } from "./Beverage/Espresso";
+import { Mocha } from "./Condiment/Mocha";
+import { Soy } from "./Condiment/Soy";
 
-type Topping = "Java Chip" | "Espresso Chip";
-type Drizzle = "Caramel" | "Chocolate";
-type Whipping = "Normal" | "Espresso";
+const beverageOrder = () => {
+  let beverage = new Espresso();
+  beverage.setSize("venti");
+  beverage = new Mocha(beverage);
+  beverage = new Mocha(beverage);
+  beverage = new Mocha(beverage);
+  beverage = new Soy(beverage);
 
-const beverage: Beverage = {
-  shot: 1,
-  syrup: false,
-  order() {
-    const { order, ...rest } = this;
-    return rest;
-  },
+  // console.log(beverage.getDescription());
+  // console.log(beverage.cost());
 };
 
-const beverageWithDecorate = (
-  beverage: Beverage,
-  args: Partial<Beverage>
-): Beverage => {
-  return {
-    ...beverage,
-    ...args,
-  };
-};
+(() => {
+  const beverage = new Espresso();
+  beverage.setSize("grande");
 
-const topping = beverageWithDecorate(beverage, { topping: "Java Chip" });
-const drizzle = beverageWithDecorate(topping, { drizzle: "Caramel" });
-const result = beverageWithDecorate(drizzle, { whipping: "Normal" });
+  const result = new Soy(new Mocha(new Mocha(beverage)));
+  console.log("grande", result.cost());
+})();
 
-console.log(result.order());
+/*
+  decorator는 실행 중에도 유연하게 변경할 수 있지만,
+  builder는 컴파일 시에 정적으로 결정된다.
+ */
+
+beverageOrder();

@@ -1,28 +1,32 @@
-/*
-    Menu와 MenuItem 모두에게 적용되는 인터페이스
- */
+export abstract class MenuComponent {
+  public name?: string;
+  public description?: string;
+  public vegetarian?: boolean;
+  public price?: number;
 
-export abstract class Component {
-  getName() {}
-  getDescription() {}
-  getPrice() {}
-  print() {}
-}
-
-export class Menu extends Component {
-  getName() {
-    super.getName();
+  isComposite(): boolean {
+    return false;
   }
 
-  getDescription() {
-    super.getDescription();
+  add(menuComponent: MenuComponent): void {
+    throw new Error("unsupported operation exception");
   }
-
-  getPrice() {
-    super.getPrice();
+  remove(menuComponent: MenuComponent): void {
+    throw new Error("unsupported operation exception");
   }
-
-  print() {
-    super.print();
+  getName(): string {
+    throw new Error("unsupported operation exception");
+  }
+  getDescription(): string {
+    throw new Error("unsupported operation exception");
+  }
+  getPrice(): number {
+    throw new Error("unsupported operation exception");
+  }
+  isVegetarian(): boolean {
+    throw new Error("unsupported operation exception");
+  }
+  print(): void {
+    throw new Error("unsupported operation exception");
   }
 }
