@@ -15,6 +15,11 @@ remote.channelUp();
 // console.log(remote);
 
 const radio = new Radio();
+const radioRemoteV1 = new RemoteControl(radio);
+radioRemoteV1.togglePower();
+radioRemoteV1.channelDown();
+radioRemoteV1.volumeUp();
+
 const radioRemote = new RemoteControlV2(radio);
 radioRemote.togglePower();
 radioRemote.volumeUp();
